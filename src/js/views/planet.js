@@ -1,24 +1,26 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "./views/home"
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router'
 
+export default function PlanetDescription() {
+    const { id } = useParams()
+    const [planet, setPlanet] = useState({})
 
-// Your component
-const MyPlanet = () => {
-  // ... component logic ...
-  return <div>My Component</div>;
-};
+    useEffect(() => {
+        async function getPlanet() {
+            let response = await fetch("https://swapi.dev/api/planets/" + id)
+            let data = await response.json()
+            setPlanet(data)
+        }
+        getPlanet()
+    }, [])
 
-const App = () => {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={MyPlanet} />
-        </Switch>
-      </BrowserRouter>
-    );
-  };
-  
-  const Home = () => <div>Home</div>;
-
-export default MyPlanet;
+        <div className='description'>
+            <div className='details title'>planet name:{planet.name}</div>
+            <div className='details'>rotation period:{planet.rotation_period}</div>
+            <div className='details'>orbital period:{planet.orbital_period}</div>
+            <div className='details'>diameter:{planet.diameter}</div>
+            <div className='details'>climate:{planet.climate}</div>
+        </div>
+    )
+}
