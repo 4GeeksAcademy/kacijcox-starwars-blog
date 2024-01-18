@@ -22,6 +22,8 @@ export default function StarshipCard() {
     }
   }
   return (
+    <div>
+      <h1 className='starship-title'>Starships</h1>
     <div className="d-flex col-10 overflow-auto mt-5 mx-auto card-container" >
       {starships?.map((starship, index) => (
         <div key={index} className="card" style={{ minWidth: "300px" }}>
@@ -33,6 +35,7 @@ export default function StarshipCard() {
           </div>
         </div>
       ))}
+      </div>
     </div>
   )
 }

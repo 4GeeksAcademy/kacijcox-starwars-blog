@@ -22,6 +22,8 @@ export default function PlanetCard() {
     }
   }
   return (
+    <div>
+      <h1 className='planet-title'>Spaceships</h1>
     <div className="d-flex col-10 overflow-auto mt-5 mx-auto card-container" >
       {planet?.map((planet, index) => (
         <div key={index} className="card" style={{ minWidth: "300px" }}>
@@ -33,6 +35,7 @@ export default function PlanetCard() {
           </div>
         </div>
       ))}
+      </div>
     </div>
   )
 }
